@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Niner Foodsite</title>
+   <link rel="icon" type="image/png" href="/images/backg.png" />
+   <link rel="stylesheet" href="/stylesheets/style.css">
+
+  </head>
+  <body>
+
+    <% include partials/header%>
+
+    <% include partials/user-navigation%>
+
+    <div class="horiz">
+    <% include partials/site-navigation.ejs %>
+<div class="vertic content">
+
+
+
+  <div id="login1">
+      <h1><a>Sign In</a></h1>
+      <span class="error">
+            <% if(error.length != 0){%>
+              <p><%= error%></p>
+              <%}%>
+          </span>
+          <form class="" action="/login" method="post">
+          <div class="login1">
+          <h5>UserId
+            <input type="text" name="userId" value="">
+          Password
+            <input type="password" name="password" value="">
+            <input type="submit" name="submit" value="Login" id="submit">
+            Not yet registered ?
+            <a href="/register">Register here</a>
+          </h5></div>
+        </form>
+
+</div>
+
+</div>
+</div>
+<% include partials/footer.ejs %>
+
+  </body>
+</html>

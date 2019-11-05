@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Niner Foodsite</title>
+   <link rel="icon" type="image/png" href="/images/backg.png" />
+   <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+  </head>
+  <body>
+
+    <% include partials/header%>
+
+    <% include partials/user-navigation%>
+
+
+      <div class="horiz">
+          <% include partials/site-navigation.ejs %>
+          <div class="vertic content">
+
+          <%if(username.length !=0){%>
+            <%if(userItems.length > 0){%>
+          <h2>My Wishlist</h2>
+
+            <table>
+              <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>madeIt</th>
+                <th>My Rating</th>
+                <th>Action</th>
+              </tr>
+              <%for(var i=0;i < userItems.length; i++){%>
+              <tr>
+                <td>
+                  <a href="<%='/catalog/item/'+userItems[i].item.itemCode%>">
+                    <%= userItems[i].item.itemName%>
+                  </a>
+                  <%if(userId == userItems[i].item.sellerId){%>
+                      <span>*</span>
+                  <%}%>
+                </td>
+                <td><%= userItems[i].item.itemCategory%></td>
+                <td>
+                  <% if(userItems[i].madeIt=="Yes"){  %>
+                                                     <p> &#10004;</p>
+                                                      <%   }else{  %>
+                                                          <p> &#10008;<p>
+                                                      <%   }   %>
+                </td>
+                <td>
+
+
+                  <% if( userItems[i].rating ==1){ %>
+                                      <h5>     &#9733;&#9734;&#9734;&#9734;&#9734;</h5>
+                                       <% } %>
+                                       <% if( userItems[i].rating ==2){ %>
+                                        <h5>     &#9733;&#9733;&#9734;&#9734;&#9734;</h5>
+                                       <% } %>
+                                       <% if(userItems[i].rating ==3){ %>
+                                         <h5>     &#9733;&#9733;&#9733;&#9734;&#9734;</h5>
+                                       <% } %>
+                                       <% if( userItems[i].rating ==4){ %>
+                                         <h5>   &#9733;&#9733;&#9733;&#9733;&#9734;</h5>
+                                       <% } %>
+                                       <% if( userItems[i].rating ==5){ %>
+                                         <h5>  &#9733;&#9733;&#9733;&#9733;&#9733;</h5>
+                                       <% } %>
+
+
+                </td>
+                <td>
+                  <div class="actions">
+                    <%for(var k=0;k < userItems.length; k++){
+                      if(userItems[k].item.itemCode != userItems[i].item.itemCode){%>
+                        <input type="hidden" name="hiddenItemList" value="<%= userItems[k].item.itemCode%>">
+                      <%}
+                    }%>
+                    <input type="hidden" name="hiddenItemCode" value="<%= userItems[i].item.itemCode%>">
+                    <div class="update">
+                      <a class="" href="<%='/feedback?action=update&itemCode='+userItems[i].item.itemCode%>">
+                        <button type="submit" name="button">Update</button>
+                      </a>
+                    </div>
+                    <div class="delete">
+                      <a class="" href="<%='/myItems?action=delete&itemCode='+userItems[i].item.itemCode%>">
+                        <button type="submit" name="button">Delete</button>
+                      </a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <%}%>
+            </table>
+
+          <%} else{%>
+            <p>No items saved yet!</p>
+          <%}} else{%>
+            <p>Please login to see the items</p>
+          <%}%>
+          <br><br>
+                  <a href="catalog">Click</a><h8> here to add a new item to your wishlist!!</h8>
+      </div>
+    </div>
+
+      <% include partials/footer%>
+
+
+
+  </body>
+</html>

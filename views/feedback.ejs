@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Niner's Foodsite</title>
+  	<link rel="icon" type="image/png" href="/images/backg.png" />
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+
+    <% include partials/header%>
+    <% include partials/user-navigation%>
+    <div class="horiz">
+      <% include partials/site-navigation%>
+     <div class="vertic content">
+            <p>
+              <a href="/">Home</a>&nbsp;/
+              <a href="/catalog">Categories</a>&nbsp;/
+              <a href="/catalog/item/<%= item.itemCode%>"><%= item.itemName%></a>:
+            </p>
+
+            <span><p>You are giving Feedback for!!<h2><%= item.itemName%>:
+            <% if(username.length !== 0){%>
+
+              <%= item.itemCategory%></h2></p></span>
+              <img class="log1" src="<%= item.itemImgUrl%>" alt="<%= item.itemDescription%>">
+
+
+              <p><%= item.itemDescription%></p>
+
+              <form class="rateForm" method="post" action="/update">
+                    <h5>Rating:
+                      <select class="ratingOptions" name="rating" >
+                        <%
+                          var options = ['0','1','2','3','4','5'];
+                          console.log("options select: ",item.itemRating)
+                          for(var i =0; i< options.length; i++){
+                            var selected = (rating == i) ? "selected":"";
+                            %>
+                            <option value="<%=options[i]%>"<%=selected%>><%=options[i]+' Star'%></option>
+                            <%
+                          }
+                        %>
+
+                      </select>&nbsp&nbsp&nbsp&nbsp&nbsp
+                      <input type="hidden" name="itemCode" value="<%=item.itemCode%>">
+                      <span>madeIt:</span>
+                      <%
+                        var options =["Yes","No"];;
+                        for(var j =0; j< options.length; j++){
+                          var checked = (madeIt == options[j]) ? "checked":"";
+                          %>
+                            <input type="radio" name="madeIt" id="<%=options[j]%>" value="<%=options[j]%>" <%=checked%> >
+                            <label for="<%=options[j]%>"><%=options[j]%></label>
+                          <%
+                        }
+                      %>
+
+
+                      <br><button type="submit">Confirm</button>
+                      <a href="/myItems">
+                        <button type="button" name="cancel">Cancel</button>
+                      </a>
+
+
+</h5>
+
+              </form>
+
+          <%}else{%>
+            <span>Login to perform this actions!!</span>
+          <%}%>
+
+
+        </div>
+      </div>
+
+
+      <% include partials/footer%>
+
+    </main>
+  </body>
+</html>

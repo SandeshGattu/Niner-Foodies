@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Niner Foodsite</title>
+   <link rel="icon" type="image/png" href="/images/backg.png" />
+   <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+  <body>
+    <% include partials/header%>
+    <% include partials/user-navigation%>
+    <div class="horiz">
+        <% include partials/site-navigation.ejs %>
+          <div class="vertic content">
+  <button onclick="location.href='/catalog'">Continue Browsing</button><br>
+	<p><a href="/index">Home </a>>
+<a href="/catalog"> Categories </a>>
+<a href="/item">Item</a> </p>
+
+<h5><%= item._itemName %></h5>
+<img class="log1" src="<%= item.itemImgUrl %>" alt="<%= item._itemName %>">
+              <h4><%= item.itemCategory%></h4><br>
+							<% if( item.itemRating ==1){ %>
+                                  <h5>     &#9733;&#9734;&#9734;&#9734;&#9734;</h5>
+                                   <% } %>
+                                   <% if( item.itemRating ==2){ %>
+                                    <h5>     &#9733;&#9733;&#9734;&#9734;&#9734;</h5>
+                                   <% } %>
+                                   <% if(item.itemRating ==3){ %>
+                                     <h5>     &#9733;&#9733;&#9733;&#9734;&#9734;</h5>
+                                   <% } %>
+                                   <% if( item.itemRating ==4){ %>
+                                     <h5>   &#9733;&#9733;&#9733;&#9733;&#9734;</h5>
+                                   <% } %>
+                                   <% if( item.itemRating ==5){ %>
+                                     <h5>  &#9733;&#9733;&#9733;&#9733;&#9733;</h5>
+                                   <% } %>
+
+                                   <% if(username.length !== 0){%>
+
+                                   <div class="actionsOnItem">
+                                     <div class="rate">
+                                       <a href="<%= '/feedback?itemCode='+item.itemCode%>">
+                                         <button type="button" name="rateButton">Rate it</button>
+                                       </a>
+                                     </div>
+                                     <div class="save">
+                                       <a href="<%= '/myItems?action=save&itemCode='+item.itemCode%>">
+                                         <button type="submit" name="button">Save it</button>
+                                       </a>
+                                     </div>
+                                   </div>
+                                   <%}else{%>
+
+                                       <h5>You are required to sign in to save the item</h5>
+
+                                   <%}%>
+
+              <div>  <p><%= item.itemDescription%></p> </div>
+
+              <br><br><br>
+
+            </div>
+          </div>
+      <% include partials/footer%>
+  </body>
+</html>

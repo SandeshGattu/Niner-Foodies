@@ -1,0 +1,145 @@
+use fooddata
+db.itemsData.drop()
+db.userData.drop()
+db.userItemData.drop()
+db.dropDatabase()
+show dbs
+use fooddata
+db
+db.createCollection('itemsData');
+db.createCollection('userData');
+db.createCollection('userItemData');
+
+db.userData.insertMany([
+{
+  'userId' : 'user1',
+  'firstName' : 'Sandesh',
+  'lastName' : 'gattu',
+  'email' : 'sgattu@uncc.edu',
+  'password':'sandy6514',
+  'address':'216 Barton Creek Drive Apt E',
+  'city':'Charlotte',
+  'state':'NC',
+  'zip':'28262',
+  'country':'USA'
+},
+{
+  'userId' : 'user2',
+  'firstName' : 'santhosh',
+  'lastName' : 'gattu',
+  'email' : 'sgattu1@uncc.edu',
+  'password':'sandy6514',
+  'address':'216 Barton Creek Drive Apt E',
+  'city':'Charlotte',
+  'state':'NC',
+  'zip':'28262',
+  'country':'USA'
+}
+]);
+
+db.itemsData.insertMany([
+{
+    itemCode: 'A1',
+    itemName: 'Oats',
+    itemCategory:'Break-fast',
+    itemDescription:"These sodium-free whole grains break down slowly to provide energy that lasts. And as part of a diet low in saturated fat and cholesterol, their soluble fiber may help reduce the risk of heart disease – providing two grams of the three grams of fiber needed.",
+    itemRating: 5,
+    itemImgUrl: '/images/oats.png',
+},
+{
+    itemCode: 'A2',
+    itemName: 'Cerals',
+    itemCategory:'Break-fast',
+    itemDescription:  " Post Golden Oreo O's Cereal is a delicious way to start the morning. It features a rich creme flavor that makes breakfast very sweet. This Post cereal has only 120 calories per serving, which makes it easy to factor into a well balanced diet. It is kosher and offers the sweet enjoyable taste of Golden Oreo cookies. This cereal is loaded with vitamin D, and iron for added nutritional value. It also doesn't contain any saturated or trans fat.",
+    itemRating: 4,
+    itemImgUrl: '/images/ceral.png',
+},
+{
+    itemCode: 'A3',
+    itemName: 'Cornflakes',
+    itemCategory:'Break-fast',
+    itemDescription: " A classic, family-favorite cereal that's perfect for both kids and adults, Kellogg’s Corn Flakes are made to enjoy by the bowlful. A good source of 10 vitamins and minerals, our cereal is a healthy, fat-free way to start your day. ",
+    itemRating: 3,
+    itemImgUrl: '/images/corn.jpg',
+},
+{
+  itemCode: 'B1',
+  itemName: 'Chips',
+  itemCategory:'Snacks',
+  itemDescription: "Each bag of lays classic flavor potato chips is a little reminder of how good the simple things are. Nothing is as perfectly seasoned as the traditional taste and crispy crunch that has made lays classic flavor potato chips an American favorite for over 75 years.",
+  itemRating: 5,
+  itemImgUrl: '/images/chips.jpg',
+},
+{
+    itemCode: 'B2',
+    itemName: 'Cookies',
+    itemCategory:'Snacks',
+    itemDescription: " Oreo Cookies and milk chocolate candy come together in this amazingly delectable candy bar. Deliciously dunk able Oreo Cookies are enveloped in vanilla creme filling and rich chocolate candy. These special chocolate candy bars make a great gift for the chocolate lover in your life. Each bar is individually wrapped to lock in freshness and delicious taste.",
+    itemRating: 2,
+    itemImgUrl: '/images/cookies.jpg',
+},
+{
+    itemCode: 'B3',
+    itemName: 'Choclates',
+    itemCategory:'Snacks',
+    itemDescription: "Ferrero Rocher offers a unique taste experience of contrasting layers: a whole crunchy hazelnut in the heart, a delicious creamy hazelnut filling, a crisp wafer shell covered with chocolate and gently roasted pieces. And thanks to its inimitable golden wrapper Ferrero Rocher is even more unique and special.",
+    itemRating: 4,
+    itemImgUrl: '/images/choc.jpg',
+},
+]);
+
+//user saved items database
+db.userItemData.insertMany([
+{
+userId:user1,
+item : {
+  itemCode: 'A1',
+  itemName: 'Oats',
+  itemCategory:'Break-fast',
+  itemDescription:"These sodium-free whole grains break down slowly to provide energy that lasts. And as part of a diet low in saturated fat and cholesterol, their soluble fiber may help reduce the risk of heart disease – providing two grams of the three grams of fiber needed.",
+  itemRating: '5',
+  itemImgUrl: '/images/oats.png',
+},
+rating : 4,
+madeIt : 'Yes'
+},
+{
+userId:user1,
+item : {
+  itemCode: 'A3',
+  itemName: 'Cornflakes',
+  itemCategory:'Break-fast',
+  itemDescription: " A classic, family-favorite cereal that's perfect for both kids and adults, Kellogg’s Corn Flakes are made to enjoy by the bowlful. A good source of 10 vitamins and minerals, our cereal is a healthy, fat-free way to start your day. ",
+  itemRating: 3,
+  itemImgUrl: '/images/corn.jpg',
+},
+rating : 4,
+madeIt : 'Yes'
+},
+{
+userId:user2,
+item : {
+    itemCode: 'A3',
+    itemName: 'Cornflakes',
+    itemCategory:'Break-fast',
+    itemDescription: " A classic, family-favorite cereal that's perfect for both kids and adults, Kellogg’s Corn Flakes are made to enjoy by the bowlful. A good source of 10 vitamins and minerals, our cereal is a healthy, fat-free way to start your day. ",
+    itemRating: 3,
+    itemImgUrl: '/images/corn.jpg',
+},
+rating : 1,
+madeIt : 'Yes'
+},
+{
+userId:'user2',
+item : {
+    itemCode: 'B3',
+    itemName: 'Choclates',
+    itemCategory:'Snacks',
+    itemDescription: "Ferrero Rocher offers a unique taste experience of contrasting layers: a whole crunchy hazelnut in the heart, a delicious creamy hazelnut filling, a crisp wafer shell covered with chocolate and gently roasted pieces. And thanks to its inimitable golden wrapper Ferrero Rocher is even more unique and special.",
+    itemRating: 4,
+    itemImgUrl: '/images/choc.jpg',
+},
+rating : 5,
+madeIt : 'No'
+}
+]);
